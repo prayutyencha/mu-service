@@ -11,7 +11,7 @@ public class MuController {
 
     @GetMapping("/v1/number")
     public String getMu(@PathVariable Integer number){
-        return number.toString();
+        return number.toString()+"TEST";
     }
     
 }
