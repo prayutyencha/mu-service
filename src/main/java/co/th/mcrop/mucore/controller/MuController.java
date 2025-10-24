@@ -1,7 +1,6 @@
-package co.th.mcrop.mu_core.controller;
+package co.th.mcrop.mucore.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/mu")
 public class MuController {
 
-    @GetMapping("/v1/{title}")
-    public String getMu(@PathVariable String title){
-        return title + "TEST";
+    @GetMapping("/v1/")
+    public String getMu(){
+        return "TEST";
     }
     
 }
