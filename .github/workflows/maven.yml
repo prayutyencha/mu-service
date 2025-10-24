@@ -43,4 +43,4 @@ jobs:
               context: .
               push: true
               tags: |
-                ${{ secrets.DOCKER_USERNAME }}/prayutyencha/mu-core:latest
+                ${{ secrets.DOCKER_USERNAME }}/mu-core:latest
