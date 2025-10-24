@@ -1,9 +1,8 @@
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk-jammy AS builder
+WORKDIR /build
+COPY . .
+RUN ./mvnw package -DskipTests
 
-VOLUME /tmp
-
-ARG JAR_FILE=target/*.jar
-
-COPY ${JAR_FILE} app.jar
-
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM gcr.io/distroless/java21-debian12
+COPY --from=builder /build/target/*.jar /app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/mu")
 public class MuController {
 
-    @GetMapping("/v1/number")
-    public String getMu(@PathVariable Integer number){
-        return number.toString()+"TEST";
+    @GetMapping("/v1/{title}")
+    public String getMu(@PathVariable String title){
+        return title + "TEST";
     }
     
 }
