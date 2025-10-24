@@ -1,9 +1,9 @@
-FROM openjdk:8
+FROM openjdk:21-jdk-slim
 
-EXPOSE 8080
+VOLUME /tmp
 
-WORKDIR /app
+ARG JAR_FILE=target/*.jar
 
-COPY target/mu-core.jar /app/mu-core.jar
+COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["java", "-jar", "/mu-core.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
