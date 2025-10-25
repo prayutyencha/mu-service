@@ -8,11 +8,25 @@
 
 name: mu-project
 
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment"
+        required: true
+        type: choice
+        options:
+          - dev
+      branch:
+        description: "Branch to deploy (e.g. main, sprint5)"
+        required: true
+        default: "main"
 
 jobs:
       build-and-push:
