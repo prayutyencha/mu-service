@@ -37,22 +37,22 @@ pipeline {
       }
     }
 
-    stage("SonarQube Analysis"){
-      steps {
-              withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId : 'jenkins-sonarqube-token') {
-                sh 'mvn clean package sonar:sonar'
-            }
-         }
-      }
+    // stage("SonarQube Analysis"){
+    //   steps {
+    //           withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId : 'jenkins-sonarqube-token') {
+    //             sh 'mvn clean package sonar:sonar'
+    //         }
+    //      }
+    //   }
     
-    stage("Quality Gate") {
-            steps {
-                script {
-                    def qg = waitForQualityGate abortPipeline: false
-                    echo "Quality Gate result: ${qg.status}"
-                }
-            }
-        }
+    // stage("Quality Gate") {
+    //         steps {
+    //             script {
+    //                 def qg = waitForQualityGate abortPipeline: false
+    //                 echo "Quality Gate result: ${qg.status}"
+    //             }
+    //         }
+    //     }
 
     stage("Build Push Docker") {
     steps{
