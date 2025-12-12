@@ -1,4 +1,4 @@
-package co.th.mcrop.mu_core;
+package co.th.mcrop.mucore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
