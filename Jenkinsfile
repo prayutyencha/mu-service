@@ -4,6 +4,14 @@ pipeline {
     jdk 'Java17'
     maven 'Maven3'
   }
+  environment {
+    APP_NAME = "mu-new"
+    RELEASE = "1.0.0"
+    DOCKER_USER = "prayutyencha"
+    DOCKER_PASS = 'dockerhub'
+    IMAGE_NAME = "${DOCKER_USER}" + "/" + "${DOCKER_USER}"
+    IMAGE_TAG = "${RELEASE}" + "-" + "${BUILD_NUMBER}"
+}
   stages{
     stage("Cleanup Workspace"){
       steps {
@@ -45,6 +53,21 @@ pipeline {
                 }
             }
         }
+
+    stage("Build Push Docker") {
+    steps{
+        script {
+            docker.withRegistry('', DOCKER_PASS) {
+                        dockerImage = docker.build("${IMAGE_NAME}")
+                    }
+            docker.withRegistry('', DOCKER_PASS) {
+                        dockerImage.push("${IMAGE_TAG}")
+                        dockerImage.push("latest")
+                    }
+        }
+    }
+}
+    
     
     }
 }
